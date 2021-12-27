@@ -1,0 +1,101 @@
+style.
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        position: absolute;
+        left: 50%;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .loader-hidden{
+        display: none;
+    }
+
+
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+    
+    .row
+        ol.breadcrumb
+            li
+                a(href='#')
+                    em.fa.fa-home
+            li.active Registar Unidades
+    .row
+        .col-lg-12
+           h1.page-header.text-center Registrar Unidades
+    br
+    .row.col-sm-8.col-sm-offset-2
+        .panel.panel-default
+            .panel-heading
+                | Registro De Unidades
+            .panel-body
+                form#formRegister.form-horizontal()
+                    fieldset
+                        .form-group
+                            label.col-md-3.control-label(for='economico') Economico
+                            .col-md-9
+                                input#economico.form-control(name='economico' type='text' placeholder='No. Eco')
+                        .form-group
+                            label.col-md-3.control-label(for='Marca') Marca
+                            .col-md-9
+                                input#marca.form-control(name='marca', type='text', placeholder='Marca')
+                        // Message body
+                        .form-group
+                            label.col-md-3.control-label(for='subMarca') Submarca
+                            .col-md-9
+                                input#subMarca.form-control(name='subMarca', type='text', placeholder='Submarca')
+                        .form-group
+                            label.col-md-3.control-label(for='placas') Placas
+                            .col-md-9
+                                input#placas(type="text", name="placas", placeholder='Placas').form-control
+                        .form-group
+                            label.col-md-3.control-label(for='modelo') Modelo
+                            .col-md-9
+                                input#modelo(type="text", name="modelo", placeholder='Modelo').form-control
+                        .form-group
+                            label.col-md-3.control-label(for='combustible') Combustible
+                            .col-md-9
+                                select#combustible(name="combustible").form-control
+                                    option(value="null") Selecciona 
+                                    option(value="1") Disel
+                                    option(value="2") Gasolina
+                                    option(value="3") Electrico
+                                    option(value="4") Gas Lp 
+                        .form-group
+                            label.col-md-3.control-label(for='serie') Serie
+                            .col-md-9
+                                input#serie(type='text', name='serie', placeholder='No. Serie').form-control                                            
+                        .form-group
+                            label.col-md-3.control-label(for='motor') Motor
+                            .col-md-5
+                                input#noMotor(type='text', placeholder='No. Serie Motor').form-control
+                            .col-md-4   
+                                input#motor(type='text', name='motor', placeholder='Ejemplo: DD5').form-control
+                        .form-group
+                            .col-md-6.widget-right 
+                                    div#spinner
+                            .col-md-6.widget-right
+                                button#registrar.btn.btn-primary.btn-md.pull-right(type='button') Registrar Unidad
+                        br
+                        br
+                        br
+                        br
+                        div#showTextLoader.form-group.loader-hidden
+                            .col-md-8.text-center
+                                h3 Cargando
+                            .col-md-4
+
+                br
+                br
+                br
+                br
+
+script(src="../../../js/standard/RegistrarUnidades.js")  
+                

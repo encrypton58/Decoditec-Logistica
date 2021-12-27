@@ -1,0 +1,91 @@
+style(type="text/css").
+    body{
+        background: #eee;
+    }
+    span{
+        font-size:15px;
+    }
+     .col-lg-4 .col-md-4 .col-sm-4 .col-xs-12 a{
+      text-decoration:none; 
+      color: #0062cc;
+      border-bottom:2px solid #0062cc;
+      margin: 20px;
+    }
+    .box{
+        padding:60px 0px;
+        
+    }
+
+    .box-part{
+        background:#FFFFFF;
+        border-radius:0;
+        padding:60px 10px;
+        margin:30px 0px;
+    }
+    .text{
+        margin:20px 0px;
+    }
+
+    .box-part .fa{
+         color:#4183D7;
+    }
+
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+    .row
+        ol.breadcrumb
+            li
+                a(href='/gerencia')
+                    em.fa.fa-home
+            li.active Control De Gastos
+    .row
+        .col-lg-12
+            h1.page-header.text-center Gasto Eliminado
+    br
+    .row
+        .col-sm-3
+        div(style={background: "white"}).col-sm-6
+            .box-part.text-center
+                i.fa.fa-file-text-o.fa-3x(aria-hidden='true')
+            hr
+            .title
+                h4=cdg.folio
+                h4 Motivo de Eliminación: #{cdg.motivo}
+            .text
+                - let json = JSON.parse(cdg.cdg)
+                - cdg.cdg = json
+                span
+                    | Fecha: #{cdg.cdg.fecha} / Semana: #{cdg.cdg.semana}
+                    br
+                    | Operador: #{cdg.cdg.operador}
+                    br
+                    | Economico: #{cdg.cdg.economico} - Unidad: #{cdg.cdg.unidad}
+                    br
+                    | 
+                    br
+                    | Comida: $#{cdg.cdg.comidas} - hospedaje: $#{cdg.cdg.hospedaje}
+                    br
+                    | Recargas: $#{cdg.cdg.recargas} - Casetas: $#{cdg.cdg.casetas} 
+                    br
+                    | Combustible: $#{cdg.cdg.combustible} - Pension: $#{cdg.cdg.pension}
+                    br
+                    | Gastos Generales: $#{cdg.cdg.gastos_generales} - Otros: $#{cdg.cdg.otros}
+                    br
+                    | Observaciones: #{cdg.cdg.observaciones}
+                    br
+                    br
+                    | Total: $#{cdg.cdg.total}
+                    br        
+                    | 
+            hr        
+            form(action='/gerencia/gasto/eliminado/eliminar' method='POST')
+                input(type="hidden", name="id", value=cdg.id)
+                button(type="submit" ).btn.btn-danger Aceptar Eliminación
+            br
+            br
+
+    br
+    br
+    br
+    br
+    br
+    br

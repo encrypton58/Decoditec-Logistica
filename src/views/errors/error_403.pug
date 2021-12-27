@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        include ../layouts/head.pug
+        title Decoditec Logistica
+        link(rel="stylesheet" href="/css/errors/error_403.css")
+    body 
+        .container-fluid
+            .row
+                .col-md-12
+                    br
+                    h2.text-center.text-info
+                        | No Puedes acceder aqui
+                    .row
+                        .col-md-12
+                            br
+                            p.text-danger.text-center
+                                | NO TIENES PERMITIDO EL ACCESO A ESTE RECURSO         
+                    .row
+                        .col-md-4
+                        .col-md-4
+                            br
+                            br
+                            button.btn.btn-block.btn-sm.btn-primary(onclick='history.go(-1)' type='button') Regresar
+                        .col-md-4
+                    .row
+                        .col-md-12
+                            br
+                            br
+                            img(alt='Bootstrap Image Preview' id="move" src='../../../assets/images/ico.jpeg')

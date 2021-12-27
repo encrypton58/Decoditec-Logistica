@@ -1,0 +1,157 @@
+style.
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        position: absolute;
+        left: 50%;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .loader-hidden{
+        display: none;
+    }
+
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+    .row
+        ol.breadcrumb
+            li
+               a(href='/canastillas')
+                    em.fa.fa-home
+            li.active Control De Gastos
+    .row
+        .col-lg-12
+           h1.page-header.text-center Control de Gastos 
+    br
+    .row.col-sm-8.col-sm-offset-2
+        .panel.panel-default
+            .panel-heading
+                | Formulario de Control de Gastos
+                ul.pull-right.panel-settings.panel-button-tab-right
+                    li.dropdown
+                        a.pull-right.dropdown-toggle(data-toggle='dropdown' href='#')
+                            em.fa.fa-cogs
+                        ul.dropdown-menu.dropdown-menu-right
+                            li
+                                ul.dropdown-settings
+                                    li
+                                        a(href='#')
+                                            em.fa.fa-cog
+                                            | Settings 1
+                                    li.divider
+                                    li
+                                        a(href='#')
+                                            em.fa.fa-cog
+                                            | Settings 2
+                                    li.divider
+                                    li
+                                        a(href='#')
+                                            em.fa.fa-cog
+                                            | Settings 3
+                span.pull-right.clickable.panel-toggle.panel-button-tab-left
+                    em.fa.fa-toggle-up
+            .panel-body
+                form#sdm.form-horizontal
+                    fieldset
+                        // Name input
+                        .form-group
+                            label.col-md-3.control-label(for='name') Folio
+                            .col-md-3
+                                input#folio.form-control(name='name' type='text', value = "XXX-" )
+                            .col-md-3    
+                                .checkbox
+                                    label
+                                        input#autoFolio(type="checkbox") 
+                                        | Automatico
+                        // Email input
+                        .form-group
+                            label.col-md-3.control-label(for='fecha') Fecha
+                            .col-md-9
+                                input#fecha(type="date" name="fecha").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='semana') Semana
+                            .col-md-9
+                                input#semana(type="number" name="semana", disabled).form-control
+                        .form-group
+                            label.col-md-3.control-label(for='operador') Operador
+                            .col-md-9
+                                input#operador(type="text", name="", placeholder="Nombre del Operador").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='economico') No. Eco
+                            .col-md-9
+                                select#economico(name="economico").form-control
+                                    option(value="null") Selecciona
+                        .form-group
+                            label.col-md-3.control-label(for='unidad') Unidad
+                            .col-md-9
+                                input#unidad(type="text", name="", placeholder="Unidad", disabled).form-control                                
+                        .form-group
+                            label.col-md-3.control-label(for='comidas') Comidas 
+                            .col-md-9
+                                input#comidas(type="number" , name="", placeholder="Gasto De Comidas").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='hospedaje') Hospedaje
+                            .col-md-9
+                                input#hospedaje(type="number" , name="", placeholder="Gasto De Hospedaje").form-control                            
+                        .form-group
+                            label.col-md-3.control-label(for='Recargas') Recargas 
+                            .col-md-9
+                                input#recargas(type="number" , name="", placeholder="Gasto De Recargas").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='casetas') Casetas
+                            .col-md-9
+                                input#casetas(type="number" , name="", placeholder="Pagos De Casetas").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='combustible') Combustible
+                            .col-md-9
+                                input#combustible(type="number" , name="", placeholder="Combustible").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='pension') Pension
+                            .col-md-9
+                                input#pension(type="number" , name="", placeholder="Pension").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='') Gastos Generales
+                            .col-md-9
+                                input#gg(type="number" , name="", placeholder="Gastos Generales").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='otros') Otros
+                            .col-md-9
+                                input#otros(type="number" , name="", placeholder="otros").form-control
+                        .form-group
+                            label.col-md-3.control-label(for='observaciones') Observaciones
+                            .col-md-9
+                                textarea#observaciones(name="", rows="4").form-control
+                        br
+                        .form-group
+                            .col-md-12.widget-right
+                                table.table-bordered.pull-right.col-md-4
+                                    thead
+                                        tr
+                                            th(scope="col").text-center Total De Gasto
+                                    tbody
+                                        tr
+                                            td.text-center
+                                                input#total(type="number", disabled).form-control.text-center
+                        br
+                        .form-group
+                            .col-md-6.widget-right 
+                                    div#spinner
+                            .col-md-6.widget-right
+                                button#registrar.btn.btn-primary.btn-md.pull-right(type='button') Registrar Unidad
+                        br
+                        br
+                        br
+                        br
+                        div#showTextLoader.form-group.loader-hidden
+                            .col-md-8.text-center
+                                h3 Cargando
+                            .col-md-4
+
+
+script(src="/js/standard/ControlDeGastos.js")

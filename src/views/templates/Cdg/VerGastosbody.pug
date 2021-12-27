@@ -1,0 +1,89 @@
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+  .row
+    ol.breadcrumb
+      li
+        a(href='#')
+          em.fa.fa-home
+      li.active Ver Gastos
+    .row
+      .col-lg-12
+        h1.page-header Ver Gastos Registrados
+  .row    
+    .col-lg-12
+      table.table
+        thead.thead-dark
+          th(scope="col") folio
+          th(scope="col") Fecha
+          th(scope="col") Semana
+          th(scope="col") Operador
+          th(scope="col") Econ. / Und.
+          th(scope="col").text-center Gastos
+        tbody#cdgtable
+          if cdgs[0].cdg == 'empty'
+            tr
+              td
+                h4
+                  b No hay Datos para mostrar
+          else
+            each cdg in cdgs
+              tr(name=cdg.folio)
+                td.text-center=cdg.folio
+                td=cdg.fecha
+                td=cdg.semana
+                td=cdg.operador
+                td=cdg.economico + " - " + cdg.unidad
+                td.text-center
+                  |Comidas: $#{cdg.comidas}.00 - Hospedaje: $#{cdg.hospedaje}.00
+                  .divider
+                  |Recargas: $#{cdg.recargas}.00 - Casetas: $#{cdg.casetas}.00
+                  .divider
+                  |Combustible: $#{cdg.combustible}.00 - Pension: $#{cdg.pension}.00
+                  .divider
+                  |Gastos Generales: $#{cdg.gastos_generales}.00 - Otros: $#{cdg.otros}.00
+                  .divider
+                  |Observaciones: #{cdg.observaciones}
+              tr(name=cdg.folio)
+                td
+                  a(href="/generar/solicitud/pdf/cdg/"+cdg.folio, target="_blank")#imprimir.btn.btn-primary Impr #{cdg.folio}
+                td
+                  button(id=cdg.folio).btn.btn-danger.btn-eliminar  Eliminar #{cdg.folio}
+                td
+                td
+                td
+                td.text-center(colspan='7') Total: $
+                  span#totalCdG=cdg.total+'.00'
+            tr.text-center
+              td
+              td
+              td
+              td
+              td
+              -let total = 0
+              -let i = 0
+              while i < cdgs.length
+                -total += cdgs[i].total
+                -i++
+              td $
+                span#totalDeCDGS=total+".00"
+
+div#eliminarCdg(tabindex="-1",role="dialog",aria-labelledby="editarUnidad",aria-hidden="true").modal.fade
+    div(role="document").modal-dialog
+        .modal-content
+            .modal-header 
+                h2.modal-title#exampleModalLabel Eliminar 
+                button(type="button", data-dismiss="modal", aria-label="close").close
+                    span(aria-hidden="true")
+            .modal-body
+                form#formRegister
+                    .form-group
+                      label.col-md-3.control-label(for='') Motivo De Eliminación
+                      .col-md-9
+                        input#motivo.form-control(type='text' placeholder='Motivo de la eliminacion')
+                      br
+                      br  
+            .modal-footer
+                .form-group
+                    button(type="button").btn.btn-danger#eliminarCDG Eliminar Control de gasto
+
+
+script(defer=true, src="../../js/standard/VerControlDeGastos.js") 

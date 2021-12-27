@@ -1,0 +1,41 @@
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+    .row
+        ol.breadcrumb
+            li
+               a(href='/gerencia')
+                    em.fa.fa-home
+            li.active Control De Gastos
+    .row
+        .col-lg-12
+           h1.page-header.text-center Gastos Eliminados 
+    br
+    .panel.panel-default
+        .panel-heading
+            | Eliminacion de Gastos
+        .panel-body.timeline-container
+            ul.timeline
+                if ecdg.length <= 0
+                    li
+                        .timeline-badge
+                            i.fa.fa-database
+                        .timeline-panel
+                            .timeline-heading 
+                                h4.timeline-title
+                                    b No Hay Eliminaciones Registradas
+                            .timeline-body
+
+                each cdg in ecdg
+                    li
+                        .timeline-badge
+                            i.fa.fa-database
+                        .timeline-panel
+                            .timeline-heading
+                                h4.timeline-title Eliminacion de #{cdg.folio}
+                            .timeline-body
+                                p Fecha de Eliminacion: #{cdg.fecha.split(" ")[0]}
+                                p Hora de Eliminacion: #{cdg.fecha.split(" ")[1]}
+                                p Motivo: #{cdg.motivo}
+                                a(href=`/gerencia/gasto/eliminado/${cdg.folio}`).btn.btn-primary Ver Detalles
+                            
+                            
+

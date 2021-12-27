@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+    head
+        include ../layouts/head.pug
+        title Decoditec Logistica
+        link(rel="stylesheet", href="/css/errors/internal_error.css")
+    body 
+        .error-content 
+            .container
+                .row
+                    .col-md-12
+                            .error-text
+                                h1.error 500 Error de Servidor
+                                img(src="/assets/images/ico.jpeg", alt="decoditec")
+                                h4 Lo sentimos de todos Los que Hacemos Decoditec Logistica 
+                                p Se ha generado un error interno en el servidor llama al soporte del sistema
+                                a(href="/", class="btn btn-primary btn-round") Volver Al inicio 

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Rutes with require post</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+</head>
+
+<body>
+
+    <form autocomplete="off" name="vale_salida" method="POST" action="/api/vs/register">
+        <label>
+             <p class="label-txt">Escribe el Nombre o provedor</p>
+             <input type="text" name="nombre" class="input">
+             <div class="line-box">
+               <div class="line"></div>
+             </div>
+            </label>
+        <label>
+              <p class="label-txt">Escribe el No.Folio</p>
+              <input type="text" name="noFolio" class="input">
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+        <label>
+                <p class="label-txt">Selecciona la fecha</p>
+                <input type="date" id="dateIn" class="input">
+                <input type="hidden" name="fecha" id="date">
+                <div class="line-box">
+                  <div class="line"></div>
+                </div>
+              </label>
+        <label>
+                <p class="label-txt">Escribe el Material</p>
+                <input id="inputMaster" type="text" name="material" class="input add">
+                <span>Cantidad:</span> 
+                <input id="inputMasterCant" type="text" name="material" class="input add">
+                <div class="line-box">
+                  <div class="line"></div>
+                </div>
+              </label>
+        <div id="addMateriales" class="addMateriales">
+
+        </div>
+        <button type="button" onclick="addMateriales()" style="margin-top: 10px;">+</button>
+        <label>
+                <p class="label-txt">Escribe proyecto</p>
+                <input type="text" name="proyecto" class="input">
+                <div class="line-box">
+                  <div class="line"></div>
+                </div>
+              </label>
+        <label>
+                <p class="label-txt">Escribe Quien recibio</p>
+                <input type="text" name="recibio" class="input">
+                <div class="line-box">
+                  <div class="line"></div>
+                </div>
+              </label>
+        <label>
+                <p class="label-txt">Escribe Quien entrego</p>
+                <input type="text" name="entrego" class="input">
+                <div class="line-box">
+                  <div class="line"></div>
+                </div>
+              </label>
+        <label>
+                <p class="label-txt">Escribe las observaciones</p>
+                <input type="text" name="obser" class="input">
+                <div class="line-box">
+                  <div class="line"></div>
+                </div>
+              </label>
+        <!---<label>
+            <p class="label-txt">(Huella coming soon)</p>
+            <div class="line-box">
+              <div class="line"></div>
+            </div>
+          </label>-->
+
+        <button onclick="sendData()" type="button">submit</button>
+        <button><a href="../dashboard.jsp">Cancelar</a></button>
+    </form>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        let noInputs = 0;
+
+
+        function addMateriales() {
+
+
+            let add = document.getElementById("addMateriales");
+
+            let label = document.createElement("label");
+            let parrafo = document.createElement("p");
+            parrafo.classList.add("label-txt");
+            parrafo.textContent = "Escribe otro material";
+            let input = document.createElement("input");
+            input.classList.add("input");
+            input.classList.add("add");
+            input.type = 'text';
+            input.name = 'entrega';
+            input.id = 'input' + noInputs;
+            let spanCant = document.createElement("span");
+            spanCant.textContent = "Cantidad"
+            let inputCant = document.createElement("input");
+            inputCant.classList.add("input");
+            inputCant.classList.add("add");
+            inputCant.type = "text";
+            inputCant.name = "cantidad";
+            inputCant.id = "inputCant" + noInputs;
+            let divLineBox = document.createElement("div");
+            divLineBox.classList.add("line-box");
+            let divLine = document.createElement("div");
+            divLine.classList.add("line");
+            label.appendChild(parrafo);
+            label.appendChild(input);
+            label.appendChild(spanCant);
+            label.appendChild(inputCant);
+            divLineBox.appendChild(divLine);
+            label.appendChild(divLineBox);
+
+            add.appendChild(label);
+            noInputs++;
+        }
+
+        function sendData() {
+
+            let inputs = document.getElementsByTagName("input");
+
+            for (let input in inputs) {
+                if (input.value == "0") {
+                    alert("is 0")
+                }
+            }
+
+            let fecha = document.getElementById("dateIn").value;
+            document.getElementById("date").value = moment(fecha).format('DD/MM/YYYY');
+
+            let array = [];
+
+            let primerValor = new Object();
+            primerValor.material = document.getElementById("inputMaster").value;
+            primerValor.cantidad = document.getElementById("inputMasterCant").value;
+            array.push(primerValor);
+
+            for (let i = 0; i <= noInputs - 1; i++) {
+                let input = new Object();
+                input.material = document.getElementById("input" + i).value;
+                input.cantidad = document.getElementById("inputCant" + i).value;
+                array.push(input);
+            }
+
+            let data = {
+                nombre: document.vale_salida.nombre.value,
+                noFolio: document.vale_salida.noFolio.value,
+                fecha: document.vale_salida.fecha.value,
+                proyecto: document.vale_salida.proyecto.value,
+                recibio: document.vale_salida.recibio.value,
+                entrego: document.vale_salida.entrego.value,
+                obser: document.vale_salida.obser.value,
+                MatAndCant: array
+            }
+
+            $.ajax({
+                url: "http://localhost:8100/api/vs/register",
+                type: "POST",
+                contentType: "application/json",
+                body: data,
+                success: function(res) {
+
+                    console.log(res)
+
+                },
+                error: function() {
+
+                }
+            })
+
+        }
+    </script>
+
+
+</body>
+
+</html>

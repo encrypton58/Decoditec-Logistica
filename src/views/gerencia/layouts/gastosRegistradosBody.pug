@@ -1,0 +1,132 @@
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+    .row
+        ol.breadcrumb
+            li
+               a(href='/hiabs')
+                    em.fa.fa-home
+            li.active Control De Gastos
+    .row
+        .col-lg-12
+           h1.page-header.text-center Gastos Autorizados 
+    br
+    .row
+        .col-lg-4
+        .col-lg-4
+            h4 Filtros De Busqueda
+        .col-lg-4
+    .row
+        .col-lg-5.form-group.text-center
+            form.form-horizontal
+                .form-group.col-lg-6
+                    label(for="de") Del Día
+                    input#inicial(type="date" name="de").form-control
+                .form-group.col-lg-6
+                    label(for="de") Al Día
+                    input#final(type="date" name="a").form-control
+        .col-lg-3
+            form.form-horizontal.text-center
+                .form-group.col-lg-12
+                    label(for="operador") Operador
+                    input#operador(type="text" name="operador").form-control
+        .col-lg-3
+            form.form-horizontal.text-center
+                .form-group.col-lg-12
+                    label(for="unidad") Unidad
+                    select#unidad(name="unidad").form-control
+                        option(value="") Ninguno 
+                        each unidad in unidades
+                            -let nombre = unidad.economico + " " + unidad.marca + ((unidad.submarca !== "" ) ? " " + unidad.submarca : "" ) + " " + unidad.modelo
+                            option(value=unidad.economico)=nombre
+        .col-lg-1 
+            form.form-horizontal.text-center
+                .form-group
+                    br
+                    button(type="button" onclick="filtrar()").btn.btn-primary Filtrar
+
+    .row    
+        .col-lg-12
+            table.table
+                thead.thead-dark
+                    th(scope="col") folio
+                    th(scope="col") Fecha
+                    th(scope="col") Semana
+                    th(scope="col") Operador
+                    th(scope="col") Econ. / Und.
+                    th(scope="col").text-center Gastos
+                tbody#cdgtable
+                    if cdgs.length == 0
+                        tr
+                            td
+                                h4 
+                                    b No hay Datos para mostrar
+                    else
+                        each cdg in cdgs
+                            tr(name=cdg.folio)
+                                td.text-center=cdg.folio
+                                td=cdg.fecha
+                                td=cdg.semana
+                                td=cdg.operador
+                                td=cdg.economico + " - " + cdg.unidad
+                                td.text-center
+                                    |Comidas: $#{cdg.comidas}.00 - Hospedaje: $#{cdg.hospedaje}.00
+                                    .divider
+                                    |Recargas: $#{cdg.recargas}.00 - Casetas: $#{cdg.casetas}.00
+                                    .divider
+                                    |Combustible: $#{cdg.combustible}.00 - Pension: $#{cdg.pension}.00
+                                    .divider
+                                    |Gastos Generales: $#{cdg.gastos_generales}.00 - Otros: $#{cdg.otros}.00
+                                    .divider
+                                    |Observaciones: #{cdg.observaciones}
+                            tr(name=cdg.folio)
+                                td
+                                    if cdg.auth == "Autorizado"
+                                        button(type="button", disabled, id=cdg.folio).btn.btn-secondary.btn-auth Autorizado
+                                    else 
+                                        button(type="button", id=cdg.folio).btn.btn-primary.btn-auth Marcar Autorizado
+                                td
+                                td
+                                td
+                                td
+                                td.text-center(colspan='7') Total: $
+                                    span#totalCdG=cdg.total+'.00'
+                        tr.text-center
+                            td 
+                            td
+                            td
+                            td
+                            td
+                            -let total = 0
+                            -let i = 0
+                            while i < cdgs.length
+                                -total += cdgs[i].total
+                                -i++
+                            td 
+                                b Total De Consulta: 
+                                b $
+                                    span#totalDeCDGS=total+".00"
+    br
+    br
+    br
+    br
+
+div#eliminarCdg(tabindex="-1" role="dialog" aria-labelledby="editarUnidad" aria-hidden="true").modal.fade
+    div(role="document").modal-dialog
+        .modal-content
+            .modal-header 
+                h2.modal-title#exampleModalLabel Eliminar 
+                button(type="button" data-dismiss="modal" aria-label="close").close
+                    span(aria-hidden="true")
+            .modal-body
+                form#formRegister
+                    .form-group
+                        label.col-md-3.control-label(for='') Motivo De Eliminación
+                        .col-md-9
+                            input#motivo.form-control(type='text' placeholder='Motivo de la eliminacion')
+                        br
+                        br  
+            .modal-footer
+                .form-group
+                    button(type="button").btn.btn-danger#eliminarCDG Eliminar Control de gasto
+
+script(defer=true, src="../../js/standard/VerControlDeGastos.js") 
+script(defer=true, src="../../js/gerencia/VerGastos.js") 

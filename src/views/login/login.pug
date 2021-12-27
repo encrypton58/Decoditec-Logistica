@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    title Logistica Decoditec
+    link(rel="stylesheet", type="text/css" href="/css/login/index.css")
+    include ../layouts/head.pug
+  body 
+      div(class='wrapper fadeInDown')
+        div#formContent
+
+          div(class='fadeIn first')
+            img(src='assets/images/ico.jpeg', id='icon', alt='decoditec image')
+          form(autocomplete='off', method="POST", action="login/signin" encytype="application/x-www-form-urlencoded")
+            input(type="text" id="login", required=true, class="fadeIn second" name="correo" placeholder="login" value=correo)    
+            input(type="password" id="password" required=true, class="fadeIn third" name="pass" placeholder="password")
+            br
+            input(type="checkbox", id='show_pass', name="show_pass" class='mt-2' )
+            label(for="show_pass" class="ml-2") Ver Contraseña 
+            br
+
+            input(type="submit" class="fadeIn fourth" value="Log In")
+
+          div#formFooter
+           a(href='#').underlineHover Olvidaste tu contraseña
+           br
+           br
+           a(href="/login/signup").underlineHover Registrate
+      script(src="/js/login/login.js") 

@@ -1,0 +1,139 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title Solicitud De Gastos
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+    script(src="/sweetalert/dist/sweetalert.min.js")
+.container-fluid
+    br
+    .row
+        .col-6.text-center
+            img(alt='Decoditec' style='width: 350px; height: 200px;' src='/assets/images/ico.jpeg')
+        .col-6.text-center
+            br
+            h3
+                b
+                    | DECODITEC LOG&Iacute;STICA 
+                    br
+                    |  SOLICITUD DE GASTOS OPERATIVOS
+    br
+    .row
+        .col-6
+            h3
+                b FOLIO
+                | : #{rd.folio}
+        .col-6.text-center
+            h4 #{rd.fecha}
+    br
+    .row
+        .col-12
+            h5
+                b DEPARTAMENTO:
+                |  #{rd.departamento}
+            h5
+                b SOLICITANTE:
+                |  #{rd.solicitante}
+            h5
+                b TIPO DE GASTO:
+                |  #{rd.departamento}
+            h5
+                b UNIDAD:
+                |  #{rd.unidad} 
+                b  Economico: 
+                | #{rd.economico}
+            h5
+                b OPERADOR:
+                |  #{rd.operador}
+    br
+    br
+    .row
+        .col-8.offset-2.text-center
+            table.table(style='height: 700px;').table-striped
+                thead.thead-light
+                    tr
+                        th
+                            b CONCEPTOS
+                        th
+                            b IMPORTES
+                tbody
+                    tr
+                        td
+                            h5 Comidas
+                        td
+                            | $#{rd.comidas}.00
+                    tr
+                        td
+                            h5 Hospedajes
+                        td
+                            | $#{rd.hospedaje}.00
+                    tr
+                        td
+                            h5 Recargas
+                        td
+                            | $#{rd.recargas}.00
+                    tr
+                        td
+                            h5 Casetas
+                        td
+                            | $#{rd.casetas}.00
+                    tr
+                        td
+                            h5 Combustible
+                        td
+                            | $#{rd.combustible}.00
+                    tr
+                        td
+                            h5 Pension
+                        td
+                            | $#{rd.pension}.00
+                    tr
+                        td
+                            h5 Gastos Generales
+                        td
+                            | $#{rd.gastos_generales}.00
+                    tr
+                        td
+                            h5 Otros
+                        td
+                            | $#{rd.otros}.00
+                    tr
+                        td
+                            h5 Obsevaciones
+                        td
+                            | #{rd.observaciones}
+                    tr
+                        td
+                            b TOTAL DE CONCEPTOS
+                        td
+                            b $#{rd.total}.00
+    br
+    .row.text-center
+        .col-6.text-center
+            h3
+                b AUTORIZADO
+            br
+            p _______________________________
+            h4 Lic. Rub&eacute;n Valencia L&oacute;pez
+        .col-6.text-center
+            h3
+                b SOLICITA
+            br
+            p _______________________________
+            h4 Enc. #{rd.solicitante}
+
+script(type="text/javascript").
+
+    swal("Para Imprimir Presiona CTRL + P", "En caso de que al omitir este mensaje no aparezca el dialogo de impresión", "info").then(() =>{
+        setTimeout(() => window.print(), 500)
+        
+    })
+
+        
+    
+
+
+
+    
+
+
+

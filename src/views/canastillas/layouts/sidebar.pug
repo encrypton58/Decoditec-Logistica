@@ -1,0 +1,42 @@
+//"hd"
+- let unidad = "canastillas", area = 12
+div#sidebar-collapse.col-sm-3.col-lg-2.sidebar
+            .profile-sidebar
+                .profile-userpic
+                    img(alt="userimage", src="http://placehold.it/50/30a5ff/fff", class="img-responsive")
+                .profile-usertitle
+                    .profile-usertitle-name=username
+                    .profile-usertitle-status
+                        span.indicator.label-success 
+                        | online
+                        .clear
+                .divider
+
+            ul.nav.menu
+                li(class=(PAGE != "cdg" ? "" : "active"))
+                    a(href=(PAGE != "cdg" ? "/registrar/cdg" : "#"))
+                        em.fa.fa-usd &nbsp;
+                        | Control de Gastos   
+                li(class=(PAGE != "vcdg" ? "" : "active"))
+                    a(href=(PAGE != "vcdg" ? "/ver/cdg" : "#"))
+                        em.fa.fa-eye &nbsp;
+                        | Ver Gastos
+                li(class=(PAGE == "rt" || PAGE == "vt" ? "active" : "")).parent
+                    a(href="#sub-item-1", data-toggle="collapse")
+                        em.fa.fa-navicon &nbsp;
+                        | Canastillas
+                        span(data-toggle="collapse", href="#sub-item-1").icon.pull-right
+                            em.fa.fa-plus
+                    ul#sub-item-1.children.collapse
+                        li
+                            a(href=(PAGE != "rt" ? "/registrar/unidad/area/" + area + "?unidades=" + unidad : "#"))
+                                span.fa.fa-arrow-right &nbsp;
+                                |  Registrar Canastillas
+                        li
+                            a(href=(PAGE != "vt" ? `/ver/unidades/area/${area}?unidades=${unidad}` : "#"))
+                                span.fa.fa-arrow-right &nbsp;
+                                |  Ver Canastillas
+                li
+                    a(href="/login/logout")#signout
+                        em.fa.fa-power-off &nbsp;
+                        | Cerrar Sesion        

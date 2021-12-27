@@ -1,0 +1,117 @@
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+    .row
+        ol.breadcrumb
+            li
+                a()
+                    em.fa.fa-home
+            li.active Ver Canastillas
+    br
+    .row
+        .col-lg-12
+            h1.page-header Ver Unidades Registradas
+    .row
+        .col-lg-12
+            table.table
+                thead.thead-dark
+                    th(scope="col") Opciones
+                    th(scope="col") Economico
+                    th(scope="col") Marca
+                    th(scope="col") Submarca
+                    th(scope="col") Placas
+                    th(scope="col") Modelo
+                    th(scope="col") Combustible
+                    th(scope="col") Serie
+                    th(scope="col") Serie de Motor
+                    th(scope="col") Motor
+                tbody#unidadesTable
+                    if unidades.length > 0
+                        each tracto in unidades
+                            tr
+                                td.text-center
+                                    input(type="checkbox", id=tracto.economico) 
+                                td=tracto.economico
+                                td=tracto.marca
+                                td=(tracto.submarca == "ninguna" ? "N/A" : tracto.submarca)
+                                td=tracto.placas
+                                td=tracto.modelo
+                                td=tracto.combustible
+                                td=tracto.serie
+                                td=tracto.serie_de_motor
+                                td=tracto.motor
+                    else
+                        tr
+                            td
+                            td
+                                h4 
+                                    b No hay Datos para mostrar
+            br
+    .row
+        .col-lg-2
+            table.table
+                thead
+                    th(scope="col").text-center Opciones 
+                tbody
+                    tr
+                        td.text-center
+                            button#eliminar.btn.btn-danger
+                                em.fa.fa-trash
+                        td.text-center
+                            button#editar.btn.btn-primary
+                                em.fa.fa-pencil
+
+div#editarUnidad(tabindex="-1",role="dialog",aria-labelledby="editarUnidad",aria-hidden="true").modal.fade
+    div(role="document").modal-dialog
+        .modal-content
+            .modal-header 
+                h2.modal-title#exampleModalLabel Editar Unidad
+                button(type="button", data-dismiss="modal", aria-label="close").close
+                    span(aria-hidden="true")
+            .modal-body
+                form#formRegister
+                    .form-group
+                        label.col-md-3.control-label(for='economico') Economico
+                        .col-md-9
+                            input#economico.form-control(name='economico' type='text' placeholder='No. Eco')
+                    .form-group
+                        label.col-md-3.control-label(for='Marca') Marca
+                        .col-md-9
+                            input#marca.form-control(name='marca', type='text', placeholder='Marca')
+                    // Message body
+                    .form-group
+                        label.col-md-3.control-label(for='subMarca') Submarca
+                        .col-md-9
+                            input#subMarca.form-control(name='subMarca', type='text', placeholder='Submarca')
+                    .form-group
+                        label.col-md-3.control-label(for='placas') Placas
+                        .col-md-9
+                            input#placas(type="text", name="placas", placeholder='Placas').form-control
+                    .form-group
+                        label.col-md-3.control-label(for='modelo') Modelo
+                        .col-md-9
+                            input#modelo(type="text", name="modelo", placeholder='Modelo').form-control
+                    .form-group
+                        label.col-md-3.control-label(for='combustible') Combustible
+                        .col-md-9
+                            select#combustible(name="combustible").form-control
+                                option(value="null") Selecciona 
+                                option(value="1") Disel
+                                option(value="2") Gasolina
+                                option(value="3") Electrico
+                                option(value="4") Gas Lp 
+                    .form-group
+                        label.col-md-3.control-label(for='serie') Serie
+                        .col-md-9
+                            input#serie(type='text', name='serie', placeholder='No. Serie').form-control                                            
+                    .form-group
+                        label.col-md-3.control-label(for='motor') Motor
+                        .col-md-5
+                            input#noMotor(type='text', placeholder='No. Serie Motor').form-control
+                        .col-md-4   
+                            input#motor(type='text', name='motor', placeholder='Ejemplo: DD5').form-control                     
+            .modal-footer
+                .form-group
+                    button(type="button").btn.btn-primary#editarSend Editar Unidad
+
+script(src="../../../js/standard/verUnidades.js")
+script(src="../../../js/standard/RegistrarUnidades.js")
+

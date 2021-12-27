@@ -1,0 +1,41 @@
+//"hd"
+div#sidebar-collapse.col-sm-3.col-lg-2.sidebar
+            .profile-sidebar
+                .profile-userpic
+                    img(alt="userimage", src="http://placehold.it/50/30a5ff/fff", class="img-responsive")
+                .profile-usertitle
+                    .profile-usertitle-name=username
+                    .profile-usertitle-status
+                        span.indicator.label-success 
+                        | online
+                        .clear
+                .divider
+
+            ul.nav.menu
+                //- li(class=(PAGE != "cdg" ? "" : "active"))
+                //-     a(href=(PAGE != "cdg" ? "/registrar/cdg" : "#"))
+                //-         em.fa.fa-usd &nbsp;
+                //-         | Control de Gastos   
+                li(class=(PAGE != "gr" ? "" : "active"))
+                    a(href=(PAGE != "gr" ? "/gerencia/gastos/autorizados" : "#"))
+                        em.fa.fa-eye &nbsp;
+                        | Ver Gastos Autorizados
+                li(class=(PAGE == "ge" || PAGE == "vcdg" ? "active" : "")).parent
+                    a(href="#sub-item-1", data-toggle="collapse")
+                        em.fa.fa-navicon &nbsp;
+                        | Gastos
+                        span(data-toggle="collapse", href="#sub-item-1").icon.pull-right
+                            em.fa.fa-plus
+                    ul#sub-item-1.children.collapse
+                        li
+                            a(href=(PAGE != "ge" ? "/gerencia/gastos/eliminados" : "#"))
+                                span.fa.fa-arrow-right &nbsp;
+                                |  Gastos Eliminados
+                        li
+                            a(href=(PAGE != "vcdg" ? '/ver/cdg' : "#"))
+                                span.fa.fa-arrow-right &nbsp;
+                                |  Ver Gastos
+                li
+                    a(href="/login/logout")#signout
+                        em.fa.fa-power-off &nbsp;
+                        | Cerrar Sesion        

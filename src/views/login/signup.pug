@@ -1,0 +1,66 @@
+doctype html
+html(lang="en")
+    head
+        include ../layouts/head.pug
+        link(rel="stylesheet", href="/css/login/signup.css")
+        title Logistica Decoditec
+    body 
+        main.my-form
+            div.container
+                div(class='row justify-content-center')
+                    div.col-md-8
+                        div.card
+                            div.card-header Registrate
+                            div.card-body
+                                form(name="my-form", action="/login/register", method="POST")
+                                    div(class="form-group row")
+                                        label(for="nombre", class="col-md-4 col-form-label text-md-right") Nombre Completo
+                                        div.col-md-6
+                                            input(type="text",id="nombre",name="nombre" pattern="[A-Za-z0-9 ]+", class="form-control" required=true)
+
+                                    div(class="form-group row")
+                                        label(for="email_address", class="col-md-4 col-form-label text-md-right") Correo Electronico
+                                        div.col-md-6
+                                            input(type="email",id="email_address", name="correo" required=true, class="form-control")
+                                
+                                    div(class="form-group row")
+                                        label(for="password", class="col-md-4 col-form-label text-md-right") Area
+                                        div.col-md-6
+                                           select(name="area").form-control
+                                                option(value="1") Gerente General
+                                                option(value="2") Tesoreria
+                                                option(value="3") Logistica y Tractos
+                                                option(value="4") Reportes de Cuenta de Operadores
+                                                option(value="5") Mantenimiento de Tractos
+                                                option(value="6") Compras
+                                                option(value="7") Taller
+                                                option(value="8") Cuentas por Cobrar
+                                                option(value="9") Recursos Humanos
+                                                option(value="10") Satelital
+                                                option(value="11") Camionetas
+                                                option(value="12") Hiabs
+                                                option(value="13") Canastillas
+                                                option(value="14") Sistemas
+
+                                
+                                    div(class="form-group row")
+                                        label(for="password", class="col-md-4 col-form-label text-md-right") Contraseña
+                                        div.col-md-6
+                                            input(type="password", id="pass",name="pass" required=true class="form-control" style={display:'inline-block'})          
+                                            div(class="alert alert-danger mt-2" id="alertPassword" style={display:'none'} role='alert') La Contraseña requiere de 8 caracteres
+                                                                                 
+                                    div(class="form-group row")
+                                        label(for="confirm_pass", class="col-md-4 col-form-label text-md-right") Confirmar Contraseña
+                                        div.col-md-6
+                                            input(type="password",id="confirm_pass",name="confirm_pass" required=true class="form-control")
+                                            div(class="alert alert-danger mt-2" id="alert" style={display:'none'} role='alert') No coicinden la contraseñas
+                                            input(type="checkbox", id="show_pass" name="vp" style={display:'inline-block'}, class="mt-2")
+                                            label(for="vp" class='ml-2') Mostrar Contraseñas
+
+                                    div(class='col-md-8 offset-md-2') 
+                                        button(class="btn btn-primary btn-block") Registrarse
+                                        a(class="btn btn-secondary btn-block", href="/") Cancelar 
+        script(src="/js/login/signup.js")
+        script(src="https://code.jquery.com/jquery-3.6.0.slim.min.js") 
+        
+                                        

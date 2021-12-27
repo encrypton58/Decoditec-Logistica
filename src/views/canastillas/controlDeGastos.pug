@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+    head
+        include ../layouts/headTemplate.pug
+        title Canastillas
+    body
+        - const PAGE = "cdg"
+        include ../layouts/navbar.pug
+        include ./layouts/sidebar.pug
+        include ../templates/Cdg/RegistrarGastoBody.pug
